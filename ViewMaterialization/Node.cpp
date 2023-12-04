@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include "general/parseArguments.h"
+#include "general/file.h"
 
 void Node::initializeWork(vector<Node>& nodes) {
 
@@ -12,6 +13,18 @@ void Node::initializeWork(vector<Node>& nodes) {
         node.currWork = mostTuples;
     }
     
+}
+
+string Node::getSchema() {
+    return "node tuples work layer is_materialized connections";
+}
+
+void Node::writeToFile(const vector<Node>& nodes, const string& filename) {
+    vector<string> lines = {getSchema()};
+    for (const Node& node : nodes) {
+        lines.push_back(node.toString());
+    }
+    file::outputStrVecAddTo(lines, filename);
 }
 
 Node::Node(const string& raw) {
@@ -30,5 +43,22 @@ Node::Node(const string& raw) {
 
     this->isMaterialized = (this->layer == 1);
     this->currWork = -1;
+
+}
+
+string Node::toString() const {
+
+    string s =
+        this->name + " " +
+        to_string(this->numTuples) + " " +
+        to_string(this->currWork) + " " +
+        to_string(this->layer) + " " +
+        strUtil::boolval(this->isMaterialized);
+
+    for (string conn : vecUtil::sort(this->connections)) {
+        s += " " + conn;
+    }
+
+    return s;
 
 }
