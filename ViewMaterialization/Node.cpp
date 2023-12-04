@@ -46,6 +46,23 @@ vector<string> Node::getNodeNames(const vector<Node>& nodes, bool onlyNotMateria
 
 }
 
+Node Node::getNode(const vector<Node>& nodes, const string& nodeName) {
+    for (const Node& node : nodes) {
+        if (node.name == nodeName) {
+            return node;
+        }
+    }
+    throw 0;
+}
+
+vector<string> Node::getNodesBelow(const vector<Node>& nodes, const string& currNode) {
+    vector<string> resultNodes = {currNode};
+    for (const string& belowNode : getNode(nodes, currNode).connections) {
+        resultNodes = vecUtil::concatenate<string>({resultNodes, getNodesBelow(nodes, belowNode)});
+    }
+    return vecUtil::removeDuplicate(resultNodes);
+}
+
 Node::Node(const string& raw) {
 
     this->name = parse::parseArgument(raw, 0);

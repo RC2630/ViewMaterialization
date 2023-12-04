@@ -9,6 +9,7 @@ struct SavingTable {
 
     SavingTable(const vector<string>& nodeNames);
     void writeToFile(const string& filename) const;
+    void calculateSavings(const vector<Node>& nodes);
 
 };
 

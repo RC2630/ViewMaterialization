@@ -20,7 +20,9 @@ void run() {
     initializeNodes();
 
     Node::writeToFile(nodes, "output/result.txt");
-    SavingTable(Node::getNodeNames(nodes)).writeToFile("output/result.txt");
+    SavingTable table(Node::getNodeNames(nodes));
+    table.calculateSavings(nodes);
+    table.writeToFile("output/result.txt");
 
 }
 

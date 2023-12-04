@@ -18,3 +18,24 @@ void SavingTable::writeToFile(const string& filename) const {
     });
     file::outputStrVecAddTo(lines, filename);
 }
+
+void SavingTable::calculateSavings(const vector<Node>& nodes) {
+
+    auto calculateSaving = [] (const vector<Node>& nodes, const string& currNode) {
+
+        int saving = 0;
+        Node currNodeObj = Node::getNode(nodes, currNode);
+
+        for (const string& belowNode : Node::getNodesBelow(nodes, currNode)) {
+            saving += max(0, Node::getNode(nodes, belowNode).currWork - currNodeObj.numTuples);
+        }
+
+        return saving;
+
+    };
+
+    for (auto& [currNode, currSaving] : this->savings) {
+        currSaving = calculateSaving(nodes, currNode);
+    }
+
+}
