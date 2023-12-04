@@ -19,6 +19,11 @@ void initializeNodes() {
 
 void run() {
 
+    if (file::isEmpty("input/nodes.txt")) {
+        cout << ANSI_RED << "\nThe input file is empty. Please populate it before running the program again.\n" << ANSI_NORMAL;
+        return;
+    }
+
     initializeNodes();
 
     cout << "\nEnter the number of views that you would like to materialize: " << ANSI_GREEN;

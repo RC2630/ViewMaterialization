@@ -1,0 +1,9 @@
+node tuples layer connections
+SIC 6000 1 SI IC SC
+SI 800 2 S I
+IC 6000 2 I C
+SC 6000 2 S C
+S 10 3 single
+I 200 3 single
+C 100 3 single
+single 1 4
