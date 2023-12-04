@@ -2,6 +2,7 @@
 
 #include "general/parseArguments.h"
 #include "general/file.h"
+#include "general/abstractFunctions.h"
 
 void Node::initializeWork(vector<Node>& nodes) {
 
@@ -25,6 +26,24 @@ void Node::writeToFile(const vector<Node>& nodes, const string& filename) {
         lines.push_back(node.toString());
     }
     file::outputStrVecAddTo(lines, filename);
+}
+
+vector<string> Node::getNodeNames(const vector<Node>& nodes, bool onlyNotMaterialized) {
+
+    vector<Node> nodesCopy = nodes;
+
+    if (onlyNotMaterialized) {
+        nodesCopy = absFunc::filter<Node>(nodesCopy, [] (const Node& node) {
+            return !node.isMaterialized;
+        });
+    }
+
+    vector<string> nodeNames = absFunc::map<Node, string>(nodesCopy, [] (const Node& node) {
+        return node.name;
+    });
+
+    return nodeNames;
+
 }
 
 Node::Node(const string& raw) {

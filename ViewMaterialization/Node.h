@@ -16,6 +16,7 @@ struct Node {
     static void initializeWork(vector<Node>& nodes);
     static string getSchema();
     static void writeToFile(const vector<Node>& nodes, const string& filename);
+    static vector<string> getNodeNames(const vector<Node>& nodes, bool onlyNotMaterialized = true);
 
     Node(const string& raw);
     string toString() const;

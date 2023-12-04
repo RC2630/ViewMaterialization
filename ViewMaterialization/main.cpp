@@ -1,4 +1,5 @@
 #include "Node.h"
+#include "algorithm.h"
 
 #include "general/file.h"
 #include "general/ansi_codes.h"
@@ -17,6 +18,9 @@ void initializeNodes() {
 void run() {
     
     initializeNodes();
+
+    Node::writeToFile(nodes, "output/result.txt");
+    SavingTable(Node::getNodeNames(nodes)).writeToFile("output/result.txt");
 
 }
 
