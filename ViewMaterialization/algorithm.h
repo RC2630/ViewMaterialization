@@ -10,7 +10,10 @@ struct SavingTable {
     SavingTable(const vector<string>& nodeNames);
     void writeToFile(const string& filename) const;
     void calculateSavings(const vector<Node>& nodes);
+    string updateNodes(vector<Node>& nodes);
 
 };
+
+vector<string> findViewsToMaterialize(vector<Node>& nodes, int numViewsToMaterialize, const string& logFileName);
 
 #endif

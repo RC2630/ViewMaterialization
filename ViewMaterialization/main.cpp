@@ -4,6 +4,8 @@
 #include "general/file.h"
 #include "general/ansi_codes.h"
 
+using vecUtil::operator<<;
+
 vector<Node> nodes;
 
 void initializeNodes() {
@@ -16,13 +18,15 @@ void initializeNodes() {
 }
 
 void run() {
-    
+
     initializeNodes();
 
-    Node::writeToFile(nodes, "output/result.txt");
-    SavingTable table(Node::getNodeNames(nodes));
-    table.calculateSavings(nodes);
-    table.writeToFile("output/result.txt");
+    cout << "\nEnter the number of views that you would like to materialize: " << ANSI_GREEN;
+    int numViewsToMaterialize; cin >> numViewsToMaterialize;
+    cout << ANSI_NORMAL;
+
+    vector<string> viewsToMaterialize = findViewsToMaterialize(nodes, numViewsToMaterialize, "output/result.txt");
+    cout << "\nThe " << numViewsToMaterialize << " views that you should materialize are " << viewsToMaterialize << ".\n";
 
 }
 

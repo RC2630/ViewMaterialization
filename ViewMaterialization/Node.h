@@ -18,6 +18,7 @@ struct Node {
     static void writeToFile(const vector<Node>& nodes, const string& filename);
     static vector<string> getNodeNames(const vector<Node>& nodes, bool onlyNotMaterialized = true);
     static Node getNode(const vector<Node>& nodes, const string& nodeName);
+    static Node& findNode(vector<Node>& nodes, const string& nodeName);
     static vector<string> getNodesBelow(const vector<Node>& nodes, const string& currNode);
 
     Node(const string& raw);

@@ -55,6 +55,15 @@ Node Node::getNode(const vector<Node>& nodes, const string& nodeName) {
     throw 0;
 }
 
+Node& Node::findNode(vector<Node>& nodes, const string& nodeName) {
+    for (Node& node : nodes) {
+        if (node.name == nodeName) {
+            return node;
+        }
+    }
+    throw 0;
+}
+
 vector<string> Node::getNodesBelow(const vector<Node>& nodes, const string& currNode) {
     vector<string> resultNodes = {currNode};
     for (const string& belowNode : getNode(nodes, currNode).connections) {
