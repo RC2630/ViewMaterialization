@@ -142,6 +142,7 @@
     <ClInclude Include="general\statisticsUtility.h" />
     <ClInclude Include="general\stringUtility.h" />
     <ClInclude Include="general\vectorUtility.h" />
+    <ClInclude Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="general\binaryUtility.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="general\statisticsUtility.cpp" />
     <ClCompile Include="general\stringUtility.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
